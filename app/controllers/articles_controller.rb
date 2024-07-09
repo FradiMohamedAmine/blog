@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.all
+    @articles = Article.ordered
   end
 
   def show
@@ -15,11 +15,16 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
 
     if @article.save
-      redirect_to @article
+      respond_to do |format|
+        format.html { redirect_to articles_path }
+        format.turbo_stream { render turbo_stream: turbo_stream.prepend("articles", @article), status: :created }
+      end
     else
       render :new, status: :unprocessable_entity
     end
   end
+
+
 
   def edit
     @article = Article.find(params[:id])
@@ -29,7 +34,11 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
-      redirect_to @article
+       respond_to do |format|
+        format.html { redirect_to articles_path }
+        format.turbo_stream
+        end
+      # redirect_to articles_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -38,9 +47,11 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-
-    redirect_to root_path, status: :see_other
-  end
+    respond_to do |format|
+      format.html {       redirect_to articles_path    }
+      format.turbo_stream
+      end
+    end
 
   private
     def article_params

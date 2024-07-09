@@ -1,0 +1,14 @@
+<%= turbo_frame_tag article do %>
+  <div class="article">
+    <%= link_to article.title,
+                article_path(article),
+                data: { turbo_frame: "_top" } %>
+<ul>
+  <li><%= link_to "Edit", edit_article_path(article) %></li>
+  <li><%= link_to "Destroy", article_path(article), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>
+  </div>
+<% end %>

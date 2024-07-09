@@ -1,13 +1,13 @@
-<h1>Articles</h1>
+<%= turbo_stream_from "articles" %>
+<main class="container">
+  <div class="header">
+    <h1>Articles</h1>
+    <%= link_to "New Article", new_article_path, class: "btn btn--primary", data: { turbo_frame: dom_id(Article.new) } %>
+  </div>
 
-Our blog has <%= Article.count %> articles and counting!
+  <%= turbo_frame_tag Article.new %>
 
-<ul>
-  <% @articles.each do |article| %>
-      <li>
-        <%= link_to article.title, article %>
-      </li>
+  <%= turbo_frame_tag "articles" do %>
+    <%= render @articles %>
   <% end %>
-</ul>
-
-<%= link_to "New Article", new_article_path %>
+</main>
