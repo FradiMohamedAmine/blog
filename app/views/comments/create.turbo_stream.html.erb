@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend "comments", @comment do %>
+  <%= render partial: "comments/comment", locals: { comment: @comment } %>
+<% end %>
