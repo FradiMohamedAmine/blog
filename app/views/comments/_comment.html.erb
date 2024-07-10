@@ -1,4 +1,12 @@
-<div class="comment">
+<%= turbo_stream_from "comment_#{comment.id}" %>
+<div class="comment" id="comment_<%= comment.id %>">
   <p><strong>Commenter:</strong> <%= comment.commenter %></p>
   <p><strong>Comment:</strong> <%= comment.body %></p>
+
+  <div class="comment-actions">
+    <%= button_to "Like", like_article_comment_path(comment.article, comment), method: :post, remote: true, class: "like-btn" %>
+    <%= button_to "Dislike", dislike_article_comment_path(comment.article, comment), method: :post, remote: true, class: "dislike-btn" %>
+    <span class="like-count"><%= comment.likes %></span> likes
+    <span class="dislike-count"><%= comment.dislikes %></span> dislikes
+  </div>
 </div>
