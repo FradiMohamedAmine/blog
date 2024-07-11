@@ -1,0 +1,38 @@
+@import "variables";
+
+.comment {
+  border-top: 1px solid $border-color;
+  padding: 10px 0;
+
+  &:first-child {
+    border-top: none;
+  }
+
+  .comment__commenter {
+    font-weight: bold;
+    color: $dark-color;
+  }
+
+  .comment__actions {
+    margin-top: 10px;
+
+    .like-btn,
+    .dislike-btn {
+      background: none;
+      border: none;
+      color: $primary-color;
+      cursor: pointer;
+      transition: $transition;
+
+      &:hover {
+        text-decoration: underline;
+        transform: scale(1.1);
+      }
+    }
+
+    .like-count,
+    .dislike-count {
+      margin-left: 10px;
+    }
+  }
+}

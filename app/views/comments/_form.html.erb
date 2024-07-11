@@ -1,27 +1,29 @@
-<%= form_with(model: [ @article, @comment ], local: true) do |form| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+<div class="form-container">
+  <%= form_with(model: [ @article, @comment ], local: true) do |form| %>
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
-      <ul>
-        <% @comment.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :commenter %><br>
+      <%= form.text_field :commenter %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :body %><br>
+      <%= form.text_area :body %>
+    </div>
+
+    <div class="form-actions">
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
-  </div>
-
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

@@ -1,0 +1,35 @@
+@import "variables";
+@import "mixins";
+
+.navbar {
+  display: flex;
+  justify-content: space-between; // This will push items to the edges
+  align-items: center; // This will vertically center items
+  background-color: $secondary-color;
+  color: $text-color;
+  padding: 10px;
+  box-shadow: $box-shadow;
+
+  .navbar__brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: $light-color;
+  }
+
+  .navbar__name {
+    margin-left: 20px;
+  }
+
+  .btn {
+    @include button-style(none, $text-color, lighten($secondary-color, 10%));
+  }
+
+  .navbar__right {
+    display: flex;
+    align-items: center; // This will vertically center items within .navbar__right
+
+    .btn {
+      margin-left: 10px; // Optional: Adds some space between buttons if there are multiple
+    }
+  }
+}

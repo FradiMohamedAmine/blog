@@ -1,5 +1,5 @@
 <%= turbo_stream_from "comments" %>
-<main>
+<main class="container">
   <%= link_to sanitize("&larr; Back to articles"), articles_path %>
   <h1><%= @article.title %></h1>
 
