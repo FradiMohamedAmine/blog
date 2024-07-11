@@ -13,12 +13,12 @@
     <% end %>
 
     <div class="form-group">
-      <%= form.label :commenter %><br>
-      <%= form.text_field :commenter %>
+     <!-- <%= form.label :commenter %>-->
+      <%= form.text_field :commenter, value: current_user.name, class: 'form-control' %>
     </div>
 
     <div class="form-group">
-      <%= form.label :body %><br>
+      <%= form.label :comment %><br>
       <%= form.text_area :body %>
     </div>
 
