@@ -1,0 +1,10 @@
+<main class="container">
+  <h1>BLog</h1>
+  <p>write and comment articles</p>
+
+  <% if user_signed_in? %>
+    <%= link_to "View articles", articles_path, class: "btn btn--dark" %>
+  <% else %>
+    <%= link_to "Sign in", new_user_session_path, class: "btn btn--dark" %>
+  <% end %>
+</main>

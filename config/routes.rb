@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  root "articles#index"
-  mount ActionCable.server => "/cable"
-
+  devise_for :users
+  root to: "pages#home"
   resources :articles do
     resources :comments do
       member do
@@ -10,4 +9,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  mount ActionCable.server => "/cable"
 end
