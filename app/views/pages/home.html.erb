@@ -1,10 +1,10 @@
-<main class="container">
-  <h1>BLog</h1>
-  <p>write and comment articles</p>
+<main class="container mt-5 text-center bg-light p-5 rounded">
+  <h1 class="display-4">Welcome to the Blog</h1>
+  <p class="lead">Write and comment on articles</p>
 
   <% if user_signed_in? %>
-    <%= link_to "View articles", articles_path, class: "btn btn--dark" %>
+    <%= link_to "View Articles", articles_path, class: "btn btn-dark btn-lg mt-3" %>
   <% else %>
-    <%= link_to "Sign in", new_user_session_path, class: "btn btn--dark" %>
+    <%= link_to "Sign In", new_user_session_path, class: "btn btn-dark btn-lg mt-3" %>
   <% end %>
 </main>

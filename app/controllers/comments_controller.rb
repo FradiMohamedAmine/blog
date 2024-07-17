@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :find_article, only: [ :create ]
-  before_action :find_comment, only: [ :like, :dislike ]
+  before_action :find_article, only: [:create]
+  before_action :find_comment, only: [:like, :dislike]
 
   def create
     @comment = @article.comments.build(comment_params)

@@ -1,13 +1,15 @@
 <%= turbo_stream_from "articles" %>
-<main class="container">
-  <div class="header">
+<main class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Articles</h1>
-    <%= link_to "New Article", new_article_path, class: "btn btn--primary", data: { turbo_frame: dom_id(Article.new) } %>
+    <%= link_to "New Article", new_article_path, class: "btn btn-primary", data: { turbo_frame: dom_id(Article.new) } %>
   </div>
 
-  <%= turbo_frame_tag Article.new %>
+  <%= turbo_frame_tag dom_id(Article.new), class: "mb-4" %>
 
   <%= turbo_frame_tag "articles" do %>
-    <%= render @articles %>
+    <div class="row">
+      <%= render @articles %>
+    </div>
   <% end %>
 </main>

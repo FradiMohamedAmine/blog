@@ -1,11 +1,15 @@
-<main class="container">
-  <%= link_to sanitize("&larr; Back to article"), article_path(@article) %>
+<main class="container mt-5">
+  <%= link_to sanitize("&larr; Back to article"), article_path(@article), class: "btn btn-secondary mb-3" %>
 
-  <div class="header">
-    <h1>Edit article</h1>
+  <div class="card">
+    <div class="card-header">
+      <h1 class="card-title">Edit article</h1>
+    </div>
+
+    <div class="card-body">
+      <%= turbo_frame_tag @article do %>
+        <%= render "form", article: @article %>
+      <% end %>
+    </div>
   </div>
-
-  <%= turbo_frame_tag @article do %>
-    <%= render "form", article: @article %>
-  <% end %>
 </main>

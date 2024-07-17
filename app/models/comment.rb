@@ -5,7 +5,6 @@ class Comment < ApplicationRecord
   after_create_commit -> { broadcast_prepend_later_to "comments" }
   after_update_commit -> { broadcast_replace_later_to "comments", target: "comment_#{self.id}" }
 
-  # Ensure default values are set for likes and dislikes
   after_initialize :set_defaults, unless: :persisted?
 
   private

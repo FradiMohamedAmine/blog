@@ -1,9 +1,8 @@
 <div class="form-container">
-  <%= form_with(model: [ @article, @comment ], local: true) do |form| %>
+  <%= form_with(model: [@article, @comment], local: true, class: "needs-validation") do |form| %>
     <% if @comment.errors.any? %>
-      <div id="error_explanation">
+      <div id="error_explanation" class="alert alert-danger">
         <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
         <ul>
           <% @comment.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -12,18 +11,15 @@
       </div>
     <% end %>
 
-    <div class="form-group">
-     <!-- <%= form.label :commenter %>-->
-      <%= form.text_field :commenter, value: current_user.name, class: 'form-control' %>
-    </div>
+    <%= form.hidden_field :commenter, value: current_user.name %>
 
     <div class="form-group">
-      <%= form.label :comment %><br>
-      <%= form.text_area :body %>
+      <%= form.label :body, "Comment", class: "form-label" %>
+      <%= form.text_area :body, class: "form-control", rows: 5 %>
     </div>
 
-    <div class="form-actions">
-      <%= form.submit %>
+    <div class="form-actions text-center mt-3">
+      <%= form.submit "Submit", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

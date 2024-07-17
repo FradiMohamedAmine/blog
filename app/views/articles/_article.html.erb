@@ -1,15 +1,19 @@
 <%= turbo_frame_tag article do %>
-  <div class="article">
-    <%= link_to article.title,
-                article_path(article),
-                data: { turbo_frame: "_top" }, 
-                class: "article__header"  %>
-<ul>
-  <li><%= link_to "Edit", edit_article_path(article) %></li>
-  <li><%= link_to "Destroy", article_path(article), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
-</ul>
+  <div class="card mb-3">
+    <div class="card-body">
+      <%= link_to article.title, article_path(article), data: { turbo_frame: "_top" }, class: "card-title h5 text-decoration-none" %>
+
+      <ul class="list-inline mt-3">
+        <li class="list-inline-item">
+          <%= link_to "Edit", edit_article_path(article), class: "btn btn-sm btn-warning" %>
+        </li>
+        <li class="list-inline-item">
+          <%= link_to "Destroy", article_path(article), class: "btn btn-sm btn-danger", data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %>
+        </li>
+      </ul>
+    </div>
   </div>
 <% end %>

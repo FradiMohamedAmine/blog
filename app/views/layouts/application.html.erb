@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= content_for(:title) || "Blog" %></title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <%= turbo_include_tags %>
-  </head>
-  <body>
+<head>
+  <title><%= content_for(:title) || "Blog" %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <%= turbo_include_tags %>
+</head>
+<body>
   <%= render "layouts/navbar" %>
-  <%= yield %>
-  </body>
+  <div class="container">
+    <%= yield %>
+  </div>
+</body>
 </html>

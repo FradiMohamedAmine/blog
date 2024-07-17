@@ -1,2 +1,7 @@
-<%= turbo_stream.prepend "articles", @article %>
-<%= turbo_stream.update "new_article_form", partial: "form", locals: { article: Article.new } %>
+<%= turbo_stream.update dom_id(Article.new) do %>
+  <%= turbo_frame_tag dom_id(Article.new) %>
+<% end %>
+
+<%= turbo_stream.append "articles" do %>
+  <%= render @article %>
+<% end %>

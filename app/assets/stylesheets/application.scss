@@ -1,21 +1,2 @@
-
-//Mixins
-@import "mixins/mixins";
-
-//Configuration
-@import "config/variables";
-
-//Components
-@import "components/articles";
-@import "components/comments";
-@import "components/forms";
-@import "components/navbar";
-
-//Layouts
-@import "layouts/general";
-
-
-body {
-  font-family: $font-family;
-  background-color: $light-color;
-}
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';

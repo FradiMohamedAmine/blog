@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    @comment = Comment.new  # Initialize a new comment object
+    @comment = Comment.new
   end
 
   def new
@@ -18,13 +18,12 @@ class ArticlesController < ApplicationController
     if @article.save
       respond_to do |format|
         format.html { redirect_to articles_path }
-        format.turbo_stream { render turbo_stream: turbo_stream.prepend("articles", @article), status: :created }
+        format.turbo_stream
       end
     else
       render :new, status: :unprocessable_entity
     end
   end
-
 
 
   def edit
@@ -35,11 +34,10 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
-       respond_to do |format|
+      respond_to do |format|
         format.html { redirect_to articles_path }
         format.turbo_stream
-        end
-      # redirect_to articles_path
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -49,13 +47,14 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.destroy
     respond_to do |format|
-      format.html {       redirect_to articles_path    }
+      format.html { redirect_to articles_path }
       format.turbo_stream
-      end
     end
+  end
 
   private
-    def article_params
-      params.require(:article).permit(:title, :body)
-    end
+
+  def article_params
+    params.require(:article).permit(:title, :body)
+  end
 end
