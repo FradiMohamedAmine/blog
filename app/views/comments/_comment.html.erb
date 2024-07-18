@@ -4,12 +4,5 @@
   <div class="card-body">
     <p class="card-text"><strong>Commenter:</strong> <%= comment.commenter %></p>
     <p class="card-text"><strong>Comment:</strong> <%= comment.body %></p>
-
-    <div class="comment__actions mt-2">
-      <%= button_to "Like", like_article_comment_path(comment.article, comment), method: :post, remote: true, class: "btn btn-outline-primary btn-sm" %>
-      <%= button_to "Dislike", dislike_article_comment_path(comment.article, comment), method: :post, remote: true, class: "btn btn-outline-danger btn-sm ml-2" %>
-      <span class="like-count ml-2"><%= comment.likes %> likes</span>
-      <span class="dislike-count ml-2"><%= comment.dislikes %> dislikes</span>
-    </div>
   </div>
 </div>

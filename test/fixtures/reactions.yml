@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reaction_type: MyString
+  liker: one
+  likeable: one
+  likeable_type: Likeable
+
+two:
+  reaction_type: MyString
+  liker: two
+  likeable: two
+  likeable_type: Likeable

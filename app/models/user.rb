@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
    #devise :database_authenticatable, :validatable
+   has_many :reactions, foreign_key: 'liker_id'
 
    def name
     email.split("@").first.capitalize
