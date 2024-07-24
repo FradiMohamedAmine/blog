@@ -1,0 +1,18 @@
+<div class="reactions" id="reactions_<%= nested_dom_id(likeable) %>">
+  <div class="reaction-type like">
+    <span class="count"><%= likeable.reactions.where(reaction_type: 'like').count %> Likes</span>
+    <div class="likers">
+      <% likeable.reactions.where(reaction_type: 'like').each do |reaction| %>
+        <div class="liker"><%= reaction.liker.name %></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="reaction-type dislike">
+    <span class="count"><%= likeable.reactions.where(reaction_type: 'dislike').count %> Dislikes</span>
+    <div class="dislikers">
+      <% likeable.reactions.where(reaction_type: 'dislike').each do |reaction| %>
+        <div class="disliker"><%= reaction.liker.name %></div>
+      <% end %>
+    </div>
+  </div>
+</div>

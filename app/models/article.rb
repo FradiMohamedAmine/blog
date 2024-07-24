@@ -1,8 +1,8 @@
 class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
-  has_many :reactions, as: :likeable
+  has_many :reactions, as: :likeable, dependent: :destroy
   has_many :likers, through: :reactions, source: :liker
-
+  
   validates :title, presence: true
   validates :body, presence: true, length: { minimum: 10 }
   scope :ordered, -> { order(id: :desc) }

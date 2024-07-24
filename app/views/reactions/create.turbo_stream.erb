@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "reactions_#{nested_dom_id(@likeable)}" do %>
+  <%= render partial: 'reactions/reaction', locals: { likeable: @likeable } %>
+<% end %>

@@ -1,7 +1,6 @@
 class Comment < ApplicationRecord
   belongs_to :article
-
-  has_many :reactions, as: :likeable
+  has_many :reactions, as: :likeable, dependent: :destroy
   has_many :likers, through: :reactions, source: :liker
 
 

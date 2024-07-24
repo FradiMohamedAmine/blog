@@ -1,47 +1,36 @@
 class ReactionsController < ApplicationController
-    before_action :find_likeable
-    before_action :find_reaction, only: [:destroy]
-  
-    def create
-      @reaction = @likeable.reactions.build(reaction_params)
-      @reaction.liker = current_user
-  
-      if @reaction.save
-        respond_to do |format|
-          format.html { redirect_to @likeable, notice: 'Reaction was successfully created.' }
-          format.turbo_stream
-        end
-      else
-        respond_to do |format|
-          format.html { redirect_to @likeable, alert: 'Unable to create reaction.' }
-          format.turbo_stream
-        end
-      end
-    end
-  
-    def destroy
+  before_action :set_likeable
+  before_action :authenticate_user!
+
+  include ApplicationHelper
+
+  def create
+    @reaction = @likeable.reactions.find_or_initialize_by(liker: current_user)
+    
+    if @reaction.persisted? && @reaction.reaction_type == reaction_params[:reaction_type]
       @reaction.destroy
-      respond_to do |format|
-        format.html { redirect_to @likeable, notice: 'Reaction was successfully removed.' }
-        format.turbo_stream
-      end
+    else
+      @reaction.reaction_type = reaction_params[:reaction_type]
+      @reaction.save
     end
-  
-    private
-  
-    def find_likeable
-      @likeable = if params[:article_id]
-                    Article.find(params[:article_id])
-                  else
-                    Comment.find(params[:comment_id])
-                  end
+    
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to @reaction.likeable }
     end
-  
-    def find_reaction
-      @reaction = @likeable.reactions.find(params[:id])
-    end
-  
-    def reaction_params
-      params.require(:reaction).permit(:reaction_type)
-    end
+  end
+
+  private
+
+  def set_likeable
+    @likeable = if params[:comment_id]
+                  Comment.find(params[:comment_id])
+                else
+                  Article.find(params[:article_id])
+                end
+  end
+
+  def reaction_params
+    params.require(:reaction).permit(:reaction_type)
+  end
 end

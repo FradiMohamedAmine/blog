@@ -1,4 +1,5 @@
 <%= turbo_stream_from "comments" %>
+<%= turbo_stream_from "reactions_#{nested_dom_id(@article)}" %>
 
 <main class="container text-left">
   <%= link_to sanitize("&larr; Back to articles"), articles_path, class: "navbar-brand d-block mb-4 mt-2" %>
@@ -13,10 +14,22 @@
 
       <hr>
 
+      <%= turbo_frame_tag "reactions_#{nested_dom_id(@article)}" do %>
+        <%= render partial: 'reactions/reaction', locals: { likeable: @article } %>
+      <% end %>
+
+      <%= form_with model: [@article, Reaction.new], local: false, data: { turbo: true }, class: "d-inline" do |form| %>
+        <%= form.hidden_field :reaction_type, value: "like" %>
+        <%= form.submit "Like", class: "btn btn-primary" %>
+      <% end %>
+
+      <%= form_with model: [@article, Reaction.new], local: false, data: { turbo: true }, class: "d-inline" do |form| %>
+        <%= form.hidden_field :reaction_type, value: "dislike" %>
+        <%= form.submit "Dislike", class: "btn btn-danger" %>
+      <% end %>
+
       <h2>Comments</h2>
-
       <%= render "comments/form", article: @article, comment: @comment %>
-
       <div id="comments">
         <%= render @article.comments.ordered %>
       </div>
