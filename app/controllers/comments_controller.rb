@@ -5,8 +5,8 @@ class CommentsController < ApplicationController
     @comment = @article.comments.build(comment_params)
     if @comment.save
       respond_to do |format|
-        format.html { redirect_to article_path(@article) }
-        format.turbo_stream { render turbo_stream: turbo_stream.prepend("comments", @comment) }
+        format.html { redirect_to article_path(@article) , notice: "Comment was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Comment was successfully created." }
       end
     else
       render :new

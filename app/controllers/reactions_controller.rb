@@ -15,8 +15,8 @@ class ReactionsController < ApplicationController
     end
     
     respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to @reaction.likeable }
+      format.turbo_stream{ flash.now[:notice] = "Reactions updated !" }
+      format.html { redirect_to @reaction.likeable , notice: "New Reaction." }
     end
   end
 

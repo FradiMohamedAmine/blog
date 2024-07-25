@@ -102,6 +102,44 @@ main.container {
 
 
 
+  .flash {
+    position: fixed;
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem; /* Adapted space variable */
+  
+    max-width: 100%;
+    width: max-content;
+    padding: 0 1rem; /* Adapted space variable */
+  }
+  
+  .flash__message {
+    font-size: 0.875rem; /* Adapted font size variable */
+    color: #fff;
+    padding: 0.25rem 1rem; /* Adapted space variables */
+    background-color: #343a40; /* Adapted dark color */
+    animation: appear-then-fade 4s both;
+    border-radius: 50rem; /* Adapted to keep the pill shape */
+  }
+  
+  @keyframes appear-then-fade {
+    0%, 100% {
+      opacity: 0;
+    }
+    5%, 60% {
+      opacity: 1;
+    }
+  }
+  
+
+
+
+
   .reactions {
     display: flex;
     gap: 10px;

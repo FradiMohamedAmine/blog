@@ -1,3 +1,4 @@
 <%= turbo_stream.replace "reactions_#{nested_dom_id(@likeable)}" do %>
   <%= render partial: 'reactions/reaction', locals: { likeable: @likeable } %>
 <% end %>
+<%= render_turbo_stream_flash_messages %>

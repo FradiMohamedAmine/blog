@@ -5,3 +5,5 @@
 <%= turbo_stream.append "articles" do %>
   <%= render @article %>
 <% end %>
+
+<%= render_turbo_stream_flash_messages %>

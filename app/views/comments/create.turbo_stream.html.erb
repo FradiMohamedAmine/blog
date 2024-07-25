@@ -1,3 +1,7 @@
+<%= turbo_stream.replace "new_comment", "" %>
+
 <%= turbo_stream.prepend "comments", @comment do %>
   <%= render partial: "comments/comment", locals: { comment: @comment } %>
 <% end %>
+
+<%= render_turbo_stream_flash_messages %>

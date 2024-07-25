@@ -1,5 +1,5 @@
 <div class="form-container">
-  <%= form_with(model: [@article, @comment], local: true, class: "needs-validation") do |form| %>
+  <%= form_with(model: [@article, @comment],id: "new_comment",  local: true, class: "needs-validation") do |form| %>
     <% if @comment.errors.any? %>
       <div id="error_explanation" class="alert alert-danger">
         <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
