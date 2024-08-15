@@ -3,7 +3,7 @@
   <p class="lead">Write and comment on articles</p>
 
   <% if user_signed_in? %>
-    <%= link_to "View Articles", articles_path, class: "btn btn-dark btn-lg mt-3" %>
+    <%= link_to "View Articles", articles_path, class: "btn btn-primary btn-lg mt-3" %>
   <% else %>
     <%= link_to "Sign In", new_user_session_path, class: "btn btn-dark btn-lg mt-3" %>
   <% end %>
